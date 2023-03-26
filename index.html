@@ -17,20 +17,23 @@
       <li>SPRINT: Hold Shift key</li>
     </ul>
 
-    <a-scene embedded start>
+    <a-scene embedded>
       <a-assets>
-        <canvas id="pong" width="800" height="600"></canvas>
+        <canvas id="pong" width="1000" height="600"></canvas>
+        <a-asset-item id="tv" src="./assets/televisionVintage.glb"></a-asset-item>
       </a-assets>
 
       <a-entity
-        position="0 1.5 -1"
+        position="-0.01 1.6 -0.125"
+        scale="0.07 0.061 0.061"
         geometry="primitive: plane"
         material="src: #pong"
         canvas-updater
       ></a-entity>
+      <a-entity position="-0.055 1.559 -0.12" scale="0.3 0.3 0.3" gltf-model="#tv"></a-entity>
       <a-entity
         camera
-        look-controls
+        look-controls="enabled: false"
         wasd-controls="enabled:false"
         position="0 1.6 0"
       ></a-entity>

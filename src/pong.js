@@ -4,9 +4,9 @@ const ctx = canvas.getContext("2d");
 const buttonCache = {}
 
 const player = {
-  x: 0,
+  x: 64,
   y: canvas.height / 2 - 100 / 2,
-  width: 16,
+  width: 32,
   height: 100,
   dy: 5,
 };
@@ -21,8 +21,8 @@ const wall = {
 const ball = {
   x: canvas.width / 2,
   y: canvas.height / 2,
-  width: 16,
-  height: 16,
+  width: 32,
+  height: 32,
   dx: 4,
   dy: 4,
 };
@@ -115,5 +115,9 @@ document.addEventListener("keydown", (event) => {
 document.addEventListener("keyup", (event) => {
   buttonCache[event.key] = false
 });
+
+document.getElementById("controlslider").addEventListener("input", (event) => {
+  player.y = (canvas.height / 100) * event.target.value
+})
 
 gameLoop();
