@@ -1,78 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta charset="utf-8">
-    <style>
-      :root {
-        --hue-rotation: 0deg;
-      }
-
-      body {
-        padding: 100px;
-      }
-
-      canvas {
-        position: fixed;
-        inset: 50%;
-        transform: translate(-50%, -50%);
-        filter: hue-rotate(var(--hue-rotation));
-      }
-
-      .slider-input {
-        position: fixed;
-        bottom: 32px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 100%;
-        max-width: 480px;
-        -webkit-appearance: none;
-      }
-
-      ul {
-        list-style-type: none;
-        position: fixed;
-        top: 16px;
-        left: 50%;
-        transform: translateX(-50%);
-      }
-
-      li {
-        font-family: sans-serif;
-        color: red;
-        filter: hue-rotate(var(--hue-rotation));
-        font-size: 24px;
-        font-weight: bold;
-        margin-bottom: 16px;
-      }
-
-      input[type=range]::-webkit-slider-runnable-track {
-        width: 100%;
-        height: 16px;
-        cursor: pointer;
-        background-color: red;
-        filter: hue-rotate(var(--hue-rotation));
-        border-radius: 1.3px;
-      }
-
-      input[type=range]::-webkit-slider-thumb {
-        background-color: red;
-        filter: hue-rotate(var(--hue-rotation));
-        height: 48px;
-        width: 16px;
-        border-radius: 3px;
-        cursor: pointer;
-        -webkit-appearance: none;
-        margin-top: -14px;
-      }
-    </style>
+    <link rel="stylesheet" href="./src/index.css" />
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <title>Pong Clone</title>
   </head>
   <body>
-    <ul>
+    <ul class="instructions instructions--mobile">
+      <li>Use the slider to move the paddle!</li>
+    </ul>
+
+    <ul class="instructions instructions--desktop">
       <li>MOVE: Up/Down keys</li>
       <li>SPRINT: Hold Shift key</li>
     </ul>
 
-    <input class="slider-input" id="controlslider" type="range" min="0" max="80" name="control" id="">
+    <a-scene embedded start>
+      <a-assets>
+        <canvas id="pong" width="800" height="600"></canvas>
+      </a-assets>
+
+      <a-entity
+        position="0 1.5 -1"
+        geometry="primitive: plane"
+        material="src: #pong"
+        canvas-updater
+      ></a-entity>
+      <a-entity
+        camera
+        look-controls
+        wasd-controls="enabled:false"
+        position="0 1.6 0"
+      ></a-entity>
+    </a-scene>
+
+    <input
+      class="slider-input"
+      id="controlslider"
+      type="range"
+      min="0"
+      max="80"
+      name="control"
+      id=""
+    />
+
+    <script src="./src/pong.js"></script>
+    <script src="./src/aframe.js"></script>
   </body>
 </html>
